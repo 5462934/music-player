@@ -25,7 +25,7 @@ exports.addMusic = (req, res, next) => {
     let sql = 'insert into musics (title, singer, time, ';
     let params = '(?, ?, ?';
     //两个路径
-    console.log(files);
+    // console.log(files);
     if (files.file) {
       //获取文件名
       let filename = path.parse(files.file.path).base;
