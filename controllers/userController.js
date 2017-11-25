@@ -125,6 +125,10 @@ userController.doLogin = (req, res, next) => {
 
 userController.logout = (req, res, next) => {
   // 从session中删除user
+  req.session.user = null;
+  res.json({
+    code: '001', msg: '退出成功'
+  })
 }
 
 

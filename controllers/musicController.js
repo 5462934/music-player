@@ -137,5 +137,5 @@ exports.showListMusic = (req, res, next) => {
       musics: musics // 可以缩写成 musics ES6中
       // musics
     });
-  })
+  });
 }
