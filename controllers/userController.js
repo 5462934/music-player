@@ -123,9 +123,9 @@ userController.doLogin = (req, res, next) => {
  * 退出
  */
 
-// userController.logout = (req, res, next) => {
-//   // 从session中删除user
-// }
+userController.logout = (req, res, next) => {
+  // 从session中删除user
+}
 
 
 /**

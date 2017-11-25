@@ -103,7 +103,7 @@ exports.updateMusic = (req, res, next) => {
  * 删除音乐
  */
 
- exports.delMusic = (req, res, next) => {
+exports.delMusic = (req, res, next) => {
   // 获取用户id
   let userid = req.session.user.id;
   // 获取音乐id
@@ -123,4 +123,19 @@ exports.updateMusic = (req, res, next) => {
       code: '001', msg: '删除歌曲成功'
     })
   })
- };
+};
+
+/**
+ * 显示音乐列表
+ * 只要地址栏进入/music/list-html，把输入也就是下面的musics给到list.html界面，在list.html界面进行渲染
+ */
+exports.showListMusic = (req, res, next) => {
+  let userId = req.session.user.id;
+  db.q('select * from musics where uid = ?', [userId], (err, musics) => {
+    if(err) return next(err);
+    res.render('list.html', {
+      musics: musics // 可以缩写成 musics ES6中
+      // musics
+    });
+  })
+}

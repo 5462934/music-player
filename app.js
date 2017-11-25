@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const api_router = require('./web_router');
 const user_router = require('./user_router');
-// const music_router = require('./music_router');
+const music_router = require('./music_router');
 
 
 //配置模板引擎
@@ -56,7 +56,7 @@ app.use('/api', api_router);
 // // 用户界面路由
 app.use('/user', user_router);
 // 音乐界面路由
-// app.use('/music', music_router);
+app.use('/music', music_router);
 
 // 第二件事: 错误处理
 app.use((err,req,res,next)=>{
