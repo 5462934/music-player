@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 //引入session
 const session = require('express-session');
 const api_router = require('./web_router');
-// const user_router = require('./user_router');
+const user_router = require('./user_router');
 // const music_router = require('./music_router');
 
 
@@ -54,8 +54,8 @@ app.use('/\/music|\/api\/.*music/', (req, res, next) => {
 // 意思是些路径的时候必须在前面加上这个路由接口/api/add-music
 app.use('/api', api_router);
 // // 用户界面路由
-// app.use('/user', user_router);
-// // 音乐界面路由
+app.use('/user', user_router);
+// 音乐界面路由
 // app.use('/music', music_router);
 
 // 第二件事: 错误处理
