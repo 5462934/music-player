@@ -38,43 +38,37 @@
 	{{include './particals/footer.html'}}
 
 	<script type="text/javascript">
-		//表单提交事件
-		$('#form').on('submit', function (e) {
-			e.preventDefault();
+	// 表单提交事件
+	$('#form').on('submit', function (e) {
+		e.preventDefault();
+		var inputs = $('input');
+		var formData = new FormData();
+		// 把填写的数据装进去 formData.append(服务器接收的名，数据);
+		formData.append('title', inputs[0].value);
+		formData.append('time', inputs[1].value);
+		formData.append('singer', inputs[2].value);
+		formData.append('file', inputs[3].files[0]);
+		formData.append('filelrc', inputs[4].files[0]);
 
-			var inputs = $('input');
-			//获取表单中的值
-			// console.log( $(this).serialize());
-			// 用来装载数据是文件的方式
-			var formData = new FormData(); //装数据的篮子
-			//把数据装进去 formData.append(服务器接受的名,数据);
-			formData.append('title', inputs[0].value);
-			formData.append('time', inputs[1].value);
-			formData.append('singer', inputs[2].value);
-			// console.log(inputs[3].value); 盘符的绝对路径
-			formData.append('file', inputs[3].files[0]);
-			formData.append('filelrc', inputs[4].files[0]);
-
-			$.ajax({
-				url: '/api/add-music',
-				type: 'post',
-				data: formData,
-				contentType: false, //默认加上键值对的头
-				processData: false,///转换你的数据
-				dataType: 'json',
-				success: function (data) {
-					if (data.code == '001') {
-						if (confirm('亲，上传成功，去听歌？^_^')) {
-							location.href = '/music/list-music';
-						}
-					} else {
-						alert(data.msg);
+		$.ajax({
+			type: 'post',
+			url: '/api/add-music',
+			data: formData,
+			contentType: false, //默认加上键值对的头
+			processData: false,///转换你的数据
+			dataType: 'json',
+			success: function (res) {
+				 if (data.code == '001') {
+					if (confirm('亲，上传成功，去听歌？^_^')) {
+						location.href = '/music/list-music';
 					}
+				} else {
+					alert(data.msg);
 				}
-			})
-
-
+			}
+			}
 		})
+	})
 
 
 	</script>

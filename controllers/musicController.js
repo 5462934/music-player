@@ -100,6 +100,13 @@ exports.updateMusic = (req, res, next) => {
 }
 
 /**
+ * 添加音乐界面
+ */
+exports.showAddMusic = (req, res, next) => {
+  res.render('add.html');
+}
+
+/**
  * 删除音乐
  */
 
